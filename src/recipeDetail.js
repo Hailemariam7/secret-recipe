@@ -1,358 +1,121 @@
-const recipeInDetail = {
-  vegetarian: false,
-  vegan: false,
-  glutenFree: true,
-  dairyFree: true,
-  veryHealthy: false,
-  cheap: false,
-  veryPopular: false,
-  sustainable: false,
-  weightWatcherSmartPoints: 21,
-  gaps: "no",
-  lowFodmap: false,
-  ketogenic: false,
-  whole30: false,
-  servings: 10,
-  sourceUrl:
-    "http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342",
-  spoonacularSourceUrl:
-    "https://spoonacular.com/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992",
-  aggregateLikes: 0,
-  creditText: "Epicurious",
-  sourceName: "Epicurious",
-  extendedIngredients: [
-    {
-      id: 1022009,
-      aisle: "Ethnic Foods",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/chili-powder.jpg",
-      name: "ancho chile powder",
-      amount: 1.5,
-      unit: "teaspoons",
-      unitShort: "t",
-      unitLong: "teaspoons",
-      originalString:
-        "1 1/2 teaspoons chipotle chile powder or ancho chile powder",
-      metaInformation: [],
+export async function recipeDetail(recipeId) {
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "430bd9ae04msh1bff2aa9e80afc3p1a2e40jsnf66198f950ed",
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     },
-    {
-      id: 13926,
-      aisle: "Meat",
-      image:
-        "https://spoonacular.com/cdn/ingredients_100x100/beef-tenderloin.jpg",
-      name: "beef tenderloin",
-      amount: 3.5,
-      unit: "pound",
-      unitShort: "lb",
-      unitLong: "pounds",
-      originalString: "1 3 1/2-pound beef tenderloin",
-      metaInformation: [],
-    },
-    {
-      id: 1002030,
-      aisle: "Spices and Seasonings",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/pepper.jpg",
-      name: "black pepper",
-      amount: 0.5,
-      unit: "teaspoon",
-      unitShort: "t",
-      unitLong: "teaspoons",
-      originalString: "1/2 teaspoon freshly ground black pepper",
-      metaInformation: ["black", "freshly ground"],
-    },
-    {
-      id: 1082047,
-      aisle: "Spices and Seasonings",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
-      name: "coarse kosher salt",
-      amount: 1,
-      unit: "tablespoon",
-      unitShort: "T",
-      unitLong: "tablespoon",
-      originalString: "1 tablespoon coarse kosher salt",
-      metaInformation: [],
-    },
-    {
-      id: 10019334,
-      aisle: "Baking",
-      image:
-        "https://spoonacular.com/cdn/ingredients_100x100/brown-sugar-dark.jpg",
-      name: "dark brown sugar",
-      amount: 2,
-      unit: "tablespoons",
-      unitShort: "T",
-      unitLong: "tablespoons",
-      originalString: "2 tablespoons dark brown sugar",
-      metaInformation: ["dark"],
-    },
-    {
-      id: 11165,
-      aisle: "Produce",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/cilantro.png",
-      name: "fresh cilantro",
-      amount: 2,
-      unit: "cups",
-      unitShort: "c",
-      unitLong: "cups",
-      originalString: "2 cups (packed) stemmed fresh cilantro",
-      metaInformation: ["fresh", "packed", "stemmed", "()"],
-    },
-    {
-      id: 2064,
-      aisle: "Produce",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/mint.jpg",
-      name: "fresh mint",
-      amount: 1,
-      unit: "cup",
-      unitShort: "c",
-      unitLong: "cup",
-      originalString: "1 cup (packed) stemmed fresh mint",
-      metaInformation: ["fresh", "packed", "stemmed", "()"],
-    },
-    {
-      id: 11297,
-      aisle: "Produce",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/parsley.jpg",
-      name: "fresh parsley",
-      amount: 3,
-      unit: "cups",
-      unitShort: "c",
-      unitLong: "cups",
-      originalString: "3 cups (packed) stemmed fresh parsley",
-      metaInformation: ["fresh", "packed", "stemmed", "()"],
-    },
-    {
-      id: 11215,
-      aisle: "Produce",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
-      name: "garlic cloves",
-      amount: 3,
-      unit: "",
-      unitShort: "",
-      unitLong: "",
-      originalString: "3 garlic cloves, peeled",
-      metaInformation: ["peeled"],
-    },
-    {
-      id: 1002030,
-      aisle: "Spices and Seasonings",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/pepper.jpg",
-      name: "ground pepper",
-      amount: 1,
-      unit: "teaspoon",
-      unitShort: "t",
-      unitLong: "teaspoon",
-      originalString: "1 teaspoon ground black pepper",
-      metaInformation: ["black"],
-    },
-    {
-      id: 9152,
-      aisle: "Produce",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/lemon-juice.jpg",
-      name: "lemon juice",
-      amount: 3,
-      unit: "tablespoons",
-      unitShort: "T",
-      unitLong: "tablespoons",
-      originalString: "3 tablespoons fresh lemon juice",
-      metaInformation: ["fresh"],
-    },
-    {
-      id: 4053,
-      aisle: "Oil, Vinegar, Salad Dressing",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/olive-oil.jpg",
-      name: "olive oil",
-      amount: 0.75,
-      unit: "cup",
-      unitShort: "c",
-      unitLong: "cups",
-      originalString: "3/4 cup olive oil",
-      metaInformation: [],
-    },
-    {
-      id: 4053,
-      aisle: "Oil, Vinegar, Salad Dressing",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/olive-oil.jpg",
-      name: "olive oil",
-      amount: 2,
-      unit: "tablespoons",
-      unitShort: "T",
-      unitLong: "tablespoons",
-      originalString: "2 tablespoons olive oil",
-      metaInformation: [],
-    },
-    {
-      id: 11821,
-      aisle: "Produce",
-      image:
-        "https://spoonacular.com/cdn/ingredients_100x100/red-bell-pepper.png",
-      name: "red pepper",
-      amount: 0.5,
-      unit: "teaspoon",
-      unitShort: "t",
-      unitLong: "teaspoons",
-      originalString: "1/2 teaspoon dried crushed red pepper",
-      metaInformation: ["dried", "red", "crushed"],
-    },
-    {
-      id: 1022068,
-      aisle: "Oil, Vinegar, Salad Dressing",
-      image:
-        "https://spoonacular.com/cdn/ingredients_100x100/red-wine-vinegar.jpg",
-      name: "red wine vinegar",
-      amount: 3,
-      unit: "tablespoons",
-      unitShort: "T",
-      unitLong: "tablespoons",
-      originalString: "3 tablespoons Sherry wine vinegar or red wine vinegar",
-      metaInformation: ["red"],
-    },
-    {
-      id: 1012047,
-      aisle: "Spices and Seasonings",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
-      name: "sea salt",
-      amount: 1,
-      unit: "teaspoon",
-      unitShort: "t",
-      unitLong: "teaspoon",
-      originalString: "1 teaspoon fine sea salt",
-      metaInformation: ["fine"],
-    },
-    {
-      id: 11677,
-      aisle: "Produce",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/shallots.jpg",
-      name: "shallots",
-      amount: 2,
-      unit: "",
-      unitShort: "",
-      unitLong: "",
-      originalString: "2 medium shallots, peeled, quartered",
-      metaInformation: ["medium", "peeled", "quartered"],
-    },
-    {
-      id: 1002028,
-      aisle: "Spices and Seasonings",
-      image: "https://spoonacular.com/cdn/ingredients_100x100/paprika.jpg",
-      name: "sweet paprika",
-      amount: 1,
-      unit: "tablespoon",
-      unitShort: "T",
-      unitLong: "tablespoon",
-      originalString: "1 tablespoon sweet smoked paprika*",
-      metaInformation: ["smoked"],
-    },
-  ],
-  id: 156992,
-  title: "Char-Grilled Beef Tenderloin with Three-Herb Chimichurri",
-  readyInMinutes: 45,
-  image:
-    "https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg",
-  imageType: "jpg",
-  instructions:
-    "PreparationFor spice rub:                                        Combine all ingredients in small bowl.                                                                            Do ahead: Can be made 2 days ahead. Store airtight at room temperature.                                    For chimichurri sauce:                                        Combine first 8 ingredients in blender; blend until almost smooth. Add 1/4 of parsley, 1/4 of cilantro, and 1/4 of mint; blend until incorporated. Add remaining herbs in 3 more additions, pureeing until almost smooth after each addition.                                                                            Do ahead: Can be made 3 hours ahead. Cover; chill.                                    For beef tenderloin:                                        Let beef stand at room temperature 1 hour.                                                                            Prepare barbecue (high heat). Pat beef dry with paper towels; brush with oil. Sprinkle all over with spice rub, using all of mixture (coating will be thick). Place beef on grill; sear 2 minutes on each side. Reduce heat to medium-high. Grill uncovered until instant-read thermometer inserted into thickest part of beef registers 130F for medium-rare, moving beef to cooler part of grill as needed to prevent burning, and turning occasionally, about 40 minutes. Transfer to platter; cover loosely with foil and let rest 15 minutes. Thinly slice beef crosswise. Serve with chimichurri sauce.                                                                            *Available at specialty foods stores and from tienda.com.",
-};
+  };
+  //create a constants.js and put the api-key and api-host variables there
+  //modularize...create a rendering function and put it in the renderingResult folder
+  //add a X closing button for this modal popup.
+  //front page doesn't look good
+  try {
+    const response = await fetch(url, options);
+    const recipeInDetail = await response.json();
 
-export function recipeDetail(recipeId) {
-  /*  const display = document.getElementsByClassName("displayRecipes")[0];
-    console.log(display.innerHTML);
-    localStorage.setItem("currentContent", display.innerHTML);
-    display.innerHTML = "";
-    display.textContent = JSON.stringify(recipeInDetail, null, 2);
-    window.addEventListener("keydown", (e) => {
-      if (e.target === "Backspace") {
-        display.innerHTML = localStorage.getItem("currentContent");
-      }
-    }); */
+    //Recipe name and photo
+    const image = document.createElement("img");
+    image.src = recipeInDetail.image;
+    image.alt = recipeInDetail.title;
+    const recipeName = document.createElement("h2");
+    recipeName.textContent = recipeInDetail.title;
+    const figure = document.createElement("figure");
+    figure.classList.add("recipe-name");
+    figure.appendChild(recipeName);
+    figure.appendChild(image);
 
-  //Recipe name and photo
-  const image = document.createElement("img");
-  image.src = recipeInDetail.image;
-  image.alt = recipeInDetail.title;
-  const recipeName = document.createElement("h2");
-  recipeName.textContent = recipeInDetail.title;
-  const figure = document.createElement("figure");
-  figure.classList.add("recipe-name");
-  figure.appendChild(recipeName);
-  figure.appendChild(image);
+    //Recipe Information
+    const ul = document.createElement("ul");
+    const isVegetarian = document.createElement("li");
+    isVegetarian.textContent = `${
+      recipeInDetail.vegetarian ? "Vegetarian: yes" : "Vegetarian: No"
+    }`;
+    const isVegan = document.createElement("li");
+    isVegan.textContent = `${
+      recipeInDetail.vegan ? "Vegan: yes" : "Vegan: No"
+    }`;
+    const isGlutenFree = document.createElement("li");
+    isGlutenFree.textContent = `${
+      recipeInDetail.glutenFree ? "Gluten free: yes" : "Gluten free: No"
+    }`;
+    const isCheap = document.createElement("li");
+    isCheap.textContent = `${
+      recipeInDetail.cheap ? "Cheap: yes" : "Cheap: No"
+    }`;
 
-  //Recipe Information
-  const ul = document.createElement("ul");
-  const isVegetarian = document.createElement("li");
-  isVegetarian.textContent = `${
-    recipeInDetail.vegetarian ? "Vegetarian: true" : "Vegetarian: false"
-  }`;
-  const isVegan = document.createElement("li");
-  isVegan.textContent = `${
-    recipeInDetail.vegan ? "Vegan: true" : "Vegan: false"
-  }`;
-  const isGlutenFree = document.createElement("li");
-  isGlutenFree.textContent = `${
-    recipeInDetail.glutenFree ? "Gluten free: true" : "Gluten free: false"
-  }`;
-  const isCheap = document.createElement("li");
-  isCheap.textContent = `${
-    recipeInDetail.cheap ? "Cheap: true" : "Cheap: false"
-  }`;
+    ul.classList.add("recipe-info");
+    ul.appendChild(isVegetarian);
+    ul.appendChild(isVegan);
+    ul.appendChild(isGlutenFree);
+    ul.appendChild(isCheap);
 
-  ul.classList.add("recipe-info");
-  ul.appendChild(isVegetarian);
-  ul.appendChild(isVegan);
-  ul.appendChild(isGlutenFree);
-  ul.appendChild(isCheap);
+    //Ingredients List
+    const ingredientsList = document.createElement("ul");
+    ingredientsList.classList.add("ingredients-list");
 
-  //Ingredients List
-  const ingredientsList = document.createElement("section");
-  ingredientsList.classList.add("ingredients-list");
+    const ingHeading = document.createElement("h3");
+    ingHeading.textContent = "Ingredients";
 
-  const ingHeading = document.createElement("h3");
-  ingHeading.textContent = "Ingredients";
+    recipeInDetail.extendedIngredients.forEach((ingredient) => {
+      const ingName = document.createElement("li");
+      ingName.textContent = ingredient.name;
+      ingredientsList.appendChild(ingName);
+    });
+    const ingredientSection = document.createElement("section");
+    ingredientSection.appendChild(ingHeading);
+    ingredientSection.appendChild(ingredientsList);
 
-  recipeInDetail.extendedIngredients.forEach((ingredient) => {
-    const ingPic = document.createElement("img");
-    ingPic.src = ingredient.image;
-    ingPic.alt = ingredient.name;
+    //Instructions
+    const instructionHeading = document.createElement("h3");
+    instructionHeading.textContent = "Instructions";
 
-    const ingName = document.createElement("figcaption");
-    ingName.textContent = ingredient.name;
+    const recipeLink = document.createElement("a");
+    recipeLink.href = `${recipeInDetail.sourceUrl}`;
+    recipeLink.target = "_blank";
+    recipeLink.textContent =
+      "Click here for a more detailed recipe information";
 
-    const ingBox = document.createElement("figure");
-    ingBox.appendChild(ingPic);
-    ingBox.appendChild(ingName);
-    ingredientsList.appendChild(ingBox);
-  });
-  const ingredientSection = document.createElement("section");
-  ingredientSection.appendChild(ingHeading);
-  ingredientSection.appendChild(ingredientsList);
-  //Instructions
-  const instructionHeading = document.createElement("h3");
-  instructionHeading.textContent = "Instructions";
+    const instruction = document.createElement("section");
+    instruction.classList.add("instruction");
+    instruction.appendChild(instructionHeading);
+    instruction.appendChild(recipeLink);
 
-  const instructionSteps = document.createElement("p");
-  instructionSteps.textContent = recipeInDetail.instructions;
+    // appending elements together
+    const popupContent = document.createElement("article");
+    popupContent.classList.add("popup-content");
+    popupContent.appendChild(figure);
+    popupContent.appendChild(ul);
+    popupContent.appendChild(ingredientSection);
+    popupContent.appendChild(instruction);
 
-  const recipeLink = document.createElement("a");
-  recipeLink.href = `${recipeInDetail.sourceUrl}`;
-  recipeLink.target = "_blank";
-  recipeLink.textContent = "Click here for a more detailed recipe information";
+    const detailPopup = document.createElement("section");
+    detailPopup.classList.add("detail-popup");
 
-  const instruction = document.createElement("section");
-  instruction.classList.add("instruction");
-  instruction.appendChild(instructionHeading);
-  instruction.appendChild(instructionSteps);
-  instruction.appendChild(recipeLink);
+    //popup closing X button.
+    const closeButton = document.createElement("img");
+    closeButton.src = "../public/assets/closeButton.jpg";
+    closeButton.alt = "Close pop-up";
+    closeButton.id = "close-button";
+    closeButton.addEventListener("click", () => {
+      detailPopup.remove();
+    });
+    document.addEventListener("keydown", () => {
+      event.key === "Escape" && detailPopup.remove();
+    });
 
-  // appending elements together
-  const popupContent = document.createElement("article");
-  popupContent.classList.add("popup-content");
-  popupContent.appendChild(figure);
-  popupContent.appendChild(ul);
-  popupContent.appendChild(ingredientSection);
-  popupContent.appendChild(instruction);
+    popupContent.appendChild(closeButton);
+    detailPopup.appendChild(popupContent);
+    document.body.appendChild(detailPopup);
+  } catch (error) {
+    //display error not to console, but to the user.
+    console.error(error);
+  }
+}
 
-  const detailPopup = document.createElement("section");
-  detailPopup.classList.add("detail-popup");
-  detailPopup.appendChild(popupContent);
-  document.body.appendChild(detailPopup);
-  //fetch(url@recipeId);
+function appendElements(parent, [...children]) {
+  for (const child of children) {
+    parent.appendChild(child);
+  }
 }

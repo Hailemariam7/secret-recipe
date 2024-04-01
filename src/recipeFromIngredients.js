@@ -1,13 +1,11 @@
 import { renderResult } from "./renderResult.js";
 
-export async function fetchRecipe(ingredients = "") {
-  console.log(ingredients);
-  renderResult();
-  const input = document.querySelector("textArea").value;
+export async function fetchRecipe(ingredients = "flour, milk, egg") {
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients
+    .split(",")
+    .join("%2C")}&number=1&ignorePantry=true&ranking=1`;
 
-  /*  const url =
-    "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=1&ignorePantry=true&ranking=1"; */
-  const url = processInput(input);
+  //const url = processInput(input);
   const options = {
     method: "GET",
     headers: {
@@ -16,20 +14,22 @@ export async function fetchRecipe(ingredients = "") {
     },
   };
 
-  /*  try {
-    //const response = await fetch(url, options);
-     const result = await response.json();
-    const recipes = JSON.stringify(result, null, 2);
-
-    console.log(recipes);
+  try {
+    const response = await fetch(url, options);
+    const recipes = await response.json();
+    renderResult(recipes);
   } catch (error) {
     console.error(error);
-  } */
+  }
 }
-function processInput(ingredients) {
-  const inputArray = ingredients.split(",");
-  console.log(inputArray);
+/* function processInput(ingredients) {
+  // check if input is string, comma separated,...error handling
+  // how many inputs, i.e inputArray length, remove hard coded url
+  //
+
+  const  = ingredients.split(",");
+
   const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${inputArray[0]}%2C${inputArray[1]}%2C${inputArray[2]}&number=1&ignorePantry=true&ranking=1`;
 
   return url;
-}
+} */
