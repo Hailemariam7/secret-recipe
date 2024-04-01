@@ -7,7 +7,7 @@ export function createTextarea() {
   textarea.placeholder = "e.g. flour, banana, sugar (optional)";
 
   const label = document.createElement("label");
-  label.textContent = "Any ingredients at hand.";
+  label.textContent = "Any ingredients at hand?";
   label.setAttribute("for", "ingredients");
   label.appendChild(textarea);
   return label;

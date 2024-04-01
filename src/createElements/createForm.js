@@ -3,10 +3,14 @@ import { createInput } from "./createInput.js";
 import { createTextarea } from "./createTextarea.js";
 
 export function createForm() {
+  const formContainer = document.createElement("section");
+  formContainer.id = "form_container";
   const form = document.createElement("form");
+  const heading = document.createElement("h3");
+  heading.textContent = "Search from thousands of recipes.";
   const queryInput = createInput(
     "query",
-    "what do you want to cook? e.g. pasta"
+    "what do you want to cook? e.g. rice"
   );
   const cuisineInput = createInput(
     "cuisine",
@@ -15,7 +19,7 @@ export function createForm() {
 
   const dietInput = createInput(
     "diet",
-    "Are you vegetarian, vegan, or pescetarian?"
+    "Diet? Are you vegetarian, vegan, or pescetarian?"
   );
   const intoleranceInput = createInput(
     "intolerance",
@@ -36,6 +40,7 @@ export function createForm() {
   search.type = "submit";
   search.name = "search";
 
+  form.appendChild(heading);
   form.appendChild(queryInput);
   form.appendChild(cuisineInput);
   form.appendChild(dietInput);
@@ -50,6 +55,6 @@ export function createForm() {
     fetchRecipe(new FormData(form));
     queryInput.querySelector('input[name="query"]').value = "";
   });
-
-  return form;
+  formContainer.appendChild(form);
+  return formContainer;
 }

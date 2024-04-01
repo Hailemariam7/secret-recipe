@@ -3,19 +3,17 @@ export async function recipeDetail(recipeId) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "430bd9ae04msh1bff2aa9e80afc3p1a2e40jsnf66198f950ed",
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": API_KEY,
+      "X-RapidAPI-Host": HOST,
     },
   };
   //create a constants.js and put the api-key and api-host variables there
   //modularize...create a rendering function and put it in the renderingResult folder
-  //add a X closing button for this modal popup.
-  //front page doesn't look good
   try {
     const response = await fetch(url, options);
     const recipeInDetail = await response.json();
 
-    //Recipe name and photo
+    //Recipe name and image
     const image = document.createElement("img");
     image.src = recipeInDetail.image;
     image.alt = recipeInDetail.title;

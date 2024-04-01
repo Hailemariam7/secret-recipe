@@ -10,12 +10,12 @@ const options = {
 export async function randomRecipe() {
   try {
     const response = await fetch(url, options);
-    const result = await response.json(); // Parse response as JSON
+    const result = await response.json();
     console.log(result);
-    const formattedResult = JSON.stringify(result, null, 2); // Stringify with indentation
-    const pre = document.createElement("pre"); // Create <pre> element for formatting
-    pre.textContent = formattedResult; // Set text content to formatted JSON
-    document.body.appendChild(pre); // Append to document body
+    const formattedResult = JSON.stringify(result, null, 2);
+    const pre = document.createElement("pre");
+    pre.textContent = formattedResult;
+    document.body.appendChild(pre);
   } catch (error) {
     console.error(error);
   }

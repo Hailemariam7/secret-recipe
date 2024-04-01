@@ -1,15 +1,14 @@
 export function createHeader() {
   const logo = document.createElement("img");
-  logo.src = "../public/assets/logo.jpg";
+  logo.src = "../../public/assets/logo.jpg";
 
   const h1 = document.createElement("h1");
   h1.textContent = "Secret-Recipe";
 
   const hamburgerMenu = document.createElement("img");
-  hamburgerMenu.src = "../public/assets/hamburgerMenu.jpg";
+  hamburgerMenu.src = "../../public/assets/hamburgerMenu.jpg";
   hamburgerMenu.alt = "menu";
   hamburgerMenu.id = "hamburger_menu";
-  hamburgerMenu.style.display = window.innerWidth <= "600px" ? "block" : "none";
 
   const home = document.createElement("li");
   home.textContent = "Home";
