@@ -1,6 +1,6 @@
 export function createHeader() {
   const logo = document.createElement("img");
-  logo.src = "../public/assets/logo.jpg";
+  logo.src = "../../public/assets/logo.jpg";
 
   const h1 = document.createElement("h1");
   h1.textContent = "Secret-Recipe";
