@@ -1,8 +1,9 @@
-import { fetchRecipe } from "../recipeFromIngredients.js";
+import { fetchRecipe } from "../fetchRecipe.js";
 import { createInput } from "./createInput.js";
 import { createTextarea } from "./createTextarea.js";
 
 export function createForm() {
+  const form = document.createElement("form");
   const queryInput = createInput(
     "query",
     "what do you want to cook? e.g. pasta"
@@ -34,17 +35,7 @@ export function createForm() {
   search.value = "Search";
   search.type = "submit";
   search.name = "search";
-  search.addEventListener("click", (event) => {
-    if (textArea.value === "") {
-      alert("please enter your available ingredients separated by comma.");
-      search.style.pointerEvents = "none";
-    } else {
-      fetchRecipe(textArea.value);
-      event.preventDefault();
-      textArea.value = "";
-    }
-  });
-  const form = document.createElement("form");
+
   form.appendChild(queryInput);
   form.appendChild(cuisineInput);
   form.appendChild(dietInput);
@@ -52,6 +43,13 @@ export function createForm() {
   form.appendChild(typeInput);
   form.appendChild(ingredientsInput);
   form.appendChild(search);
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    fetchRecipe(new FormData(form));
+    queryInput.querySelector('input[name="query"]').value = "";
+  });
 
   return form;
 }
