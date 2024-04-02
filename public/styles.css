@@ -13,6 +13,7 @@ body {
   height: auto;
   margin: auto;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: rgb(237, 237, 235);
 }
 
 header {
@@ -41,16 +42,23 @@ nav {
   flex: 1 1 auto;
 }
 
-header ul {
+.nab-tabs {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin: 31px 0;
 }
 
-header ul li:hover {
+.tab {
+  max-width: max-content;
+}
+.tab pre {
+  display: none;
+}
+
+.nab-tabs p:hover {
   cursor: pointer;
-  padding: 5px;
+  padding: 1px;
   scale: 1.2;
   background-color: rgb(92, 184, 110, 0.8);
 }
