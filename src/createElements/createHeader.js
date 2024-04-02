@@ -2,7 +2,7 @@ import { navPopup } from "./navPopup.js";
 export function createHeader() {
   //logo
   const logo = document.createElement("img");
-  logo.src = "../public/assets/logo.jpg";
+  logo.src = "../../public/assets/logo.jpg";
   logo.onclick = clearPage;
 
   const h1 = document.createElement("h1");

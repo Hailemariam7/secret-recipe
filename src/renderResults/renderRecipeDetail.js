@@ -92,7 +92,7 @@ export async function renderRecipeDetail(recipeInDetail) {
     event.key === "Escape" && detailPopup.remove();
   });
   const goUp = document.createElement("img");
-  goUp.src = "../public/assets/goUp.jpg";
+  goUp.src = "../../public/assets/goUp.jpg";
   goUp.classList.add("go-up");
   goUp.addEventListener("click", () => {
     window.scrollTo(0, 0);
