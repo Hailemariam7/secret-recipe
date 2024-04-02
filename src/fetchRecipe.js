@@ -1,36 +1,6 @@
 import { renderResult } from "./renderResult.js";
 
-/* export async function fetchRecipe(ingredients = "flour, milk, egg") {
-  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients
-    .split(",")
-    .join("%2C")}&number=1&ignorePantry=true&ranking=1`;
-
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "430bd9ae04msh1bff2aa9e80afc3p1a2e40jsnf66198f950ed",
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    },
-  };
-
-  try {
-    const response = await fetch(url, options);
-    const recipes = await response.json();
-    renderResult(recipes);
-  } catch (error) {
-    console.error(error);
-  }
-} */
 export async function fetchRecipe(formData) {
-  console.log(
-    "ingredients",
-    formData.get("ingredients").trim().split(", ").join("%2C")
-  );
-  console.log("query", formData.get("query"));
-  console.log("cuisine", formData.get("cuisine"));
-  console.log("diet", formData.get("diet"));
-  console.log("intolerance", formData.get("intolerance"));
-  console.log("type", formData.get("type").split(" ").join("%20"));
   const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${formData.get(
     "query"
   )}&cuisine=${formData.get("cuisine")}&excludeCuisine=''&diet=${formData.get(
@@ -55,11 +25,11 @@ export async function fetchRecipe(formData) {
   };
 
   try {
-    //const response = await fetch(url, options);
+    const response = await fetch(url, options);
     const result = await response.json();
     localStorage.setItem("recipes", JSON.stringify(result));
     renderResult(result);
   } catch (error) {
-    console.error(error);
+    alert(error);
   }
 }

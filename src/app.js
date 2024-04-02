@@ -17,5 +17,7 @@ window.addEventListener("load", () => {
   if (fetchedRecipes) {
     initApp();
     renderResult(fetchedRecipes);
-  } else initApp();
+  } else {
+    initApp();
+  }
 });

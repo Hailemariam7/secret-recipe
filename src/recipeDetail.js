@@ -1,3 +1,4 @@
+import { API_KEY, HOST } from "./constants.js";
 export async function recipeDetail(recipeId) {
   const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`;
   const options = {
@@ -7,8 +8,7 @@ export async function recipeDetail(recipeId) {
       "X-RapidAPI-Host": HOST,
     },
   };
-  //create a constants.js and put the api-key and api-host variables there
-  //modularize...create a rendering function and put it in the renderingResult folder
+
   try {
     const response = await fetch(url, options);
     const recipeInDetail = await response.json();
@@ -92,14 +92,15 @@ export async function recipeDetail(recipeId) {
     detailPopup.classList.add("detail-popup");
 
     //popup closing X button.
-    const closeButton = document.createElement("img");
-    closeButton.src = "../public/assets/closeButton.jpg";
-    closeButton.alt = "Close pop-up";
+    const closeButton = document.createElement("span");
+    /* closeButton.src = "../public/assets/closeButton.jpg";
+    closeButton.alt = "Close pop-up";*/
     closeButton.id = "close-button";
+    closeButton.textContent = "X";
     closeButton.addEventListener("click", () => {
       detailPopup.remove();
     });
-    document.addEventListener("keydown", () => {
+    document.addEventListener("keydown", (event) => {
       event.key === "Escape" && detailPopup.remove();
     });
 
