@@ -1,4 +1,6 @@
-import { fetchRecipe } from "../fetchRecipe.js";
+import { initApp } from "../app.js";
+import { fetchRecipes } from "../fetchRecipes/fetchRecipes.js";
+import { clearPage } from "./createHeader.js";
 import { createInput } from "./createInput.js";
 import { createTextarea } from "./createTextarea.js";
 
@@ -8,31 +10,13 @@ export function createForm() {
   const form = document.createElement("form");
   const heading = document.createElement("h3");
   heading.textContent = "Search from thousands of recipes.";
-  const queryInput = createInput(
-    "query",
-    "what do you want to cook? e.g. rice"
-  );
-  const cuisineInput = createInput(
-    "cuisine",
-    "Cuisine? may be mediterranean, african, or korean"
-  );
+  const queryInput = createInput("query", "Query");
+  const cuisineInput = createInput("cuisine", "Cuisine");
 
-  const dietInput = createInput(
-    "diet",
-    "Diet? Are you vegetarian, vegan, or pescetarian?"
-  );
-  const intoleranceInput = createInput(
-    "intolerance",
-    "Any intolerance? Gluten, dairy, etc."
-  );
-  const typeInput = createInput(
-    "type",
-    "Type? Main course,appetizer,breakfast..."
-  );
-  const ingredientsInput = createTextarea(
-    "ingredients",
-    "Any ingredients at hand?"
-  );
+  const dietInput = createInput("diet", "Diet");
+  const intoleranceInput = createInput("intolerance", "Intolerance");
+  const typeInput = createInput("type", "Meal type.");
+  const ingredientsInput = createTextarea("ingredients", "Ingredients");
 
   const search = document.createElement("input");
   search.id = "search";
@@ -50,10 +34,12 @@ export function createForm() {
   form.appendChild(search);
 
   form.addEventListener("submit", (event) => {
+    localStorage.removeItem("recipes");
+    localStorage.clear();
     event.preventDefault();
-
-    fetchRecipe(new FormData(form));
+    fetchRecipes(new FormData(form));
     queryInput.querySelector('input[name="query"]').value = "";
+    //location.reload();
   });
   formContainer.appendChild(form);
   return formContainer;

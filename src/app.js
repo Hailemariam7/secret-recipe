@@ -1,6 +1,6 @@
 import { createForm } from "./createElements/createForm.js";
 import { createHeader } from "./createElements/createHeader.js";
-import { renderResult } from "./renderResult.js";
+import { renderRecipes } from "./renderResults/renderRecipes.js";
 
 export function initApp() {
   const header = createHeader();
@@ -12,11 +12,10 @@ export function initApp() {
 }
 
 window.addEventListener("load", () => {
-  const fetchedRecipes = JSON.parse(localStorage.getItem("recipes"));
-  console.log(fetchedRecipes);
-  if (fetchedRecipes) {
+  const savedRecipes = JSON.parse(localStorage.getItem("recipes"));
+  if (savedRecipes) {
     initApp();
-    renderResult(fetchedRecipes);
+    renderRecipes(savedRecipes);
   } else {
     initApp();
   }

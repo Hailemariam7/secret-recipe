@@ -1,8 +1,7 @@
-import { recipeDetail } from "./recipeDetail.js";
-import { detailedRecipesList } from "./data.js";
-import { recipes } from "./data.js";
+import { clearPage } from "../createElements/createHeader.js";
+import { fetchRecipeDetail } from "../fetchRecipes/fetchRecipeDetail.js";
 
-export function renderResult(recipes) {
+export function renderRecipes(recipes) {
   const display = document.createElement("section");
   display.classList.add("display-recipes");
 
@@ -19,7 +18,7 @@ export function renderResult(recipes) {
     figure.appendChild(figcaption);
 
     figure.addEventListener("click", () => {
-      recipeDetail(recipe.id);
+      fetchRecipeDetail(recipe.id);
     });
     display.appendChild(figure);
   });
