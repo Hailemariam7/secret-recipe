@@ -29,6 +29,15 @@ export async function fetchRecipes(formData) {
     const response = await fetch(url, options);
     const result = await response.json();
 
+    if(response.ok){
+      localStorage.removeItem('recipes')
+      localStorage.clear()
+
+        // do it the better way, but i got this one
+      document.querySelectorAll('.display-recipes').forEach((element)=>{element.remove()})
+        
+    } 
+    
     localStorage.setItem("recipes", JSON.stringify(result));
     renderRecipes(result);
   } catch (error) {
