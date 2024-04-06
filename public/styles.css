@@ -25,6 +25,10 @@ header {
   overflow-x: hidden;
 }
 
+main{
+  position: relative;
+}
+
 header img {
   max-width: 80px;
   max-height: 75px;
@@ -81,7 +85,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9;
   max-width: 400px;
   background-color: rgb(212, 230, 212);
 }
@@ -153,7 +157,7 @@ input {
   border-radius: 10px;
 }
 
-.detail-popup {
+/*.detail-popup {
   position: absolute;
   top: 0;
   left: 0;
@@ -162,30 +166,40 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10;
   width: 100%;
-  min-height: 12000px;
+  min-height: max-content;
+  /* max-height:max-content; 
   background-color: rgb(92, 184, 110, 0.8);
-}
+}*/
 
 .popup-content {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   right: 0;
   bottom: 0;
-  z-index: 1001;
-  min-width: 320px;
-  max-width: 600px;
-  height: 100%;
+  z-index: 20;
+  border:1px solid gray;
+  border-radius: 8px;
+  width: auto;
+  background-color: gray;
+  min-width: max-content;
+  /* max-width: max-content; */
+  height: 120vh;
+
   display: flex;
+  
   flex-direction: column;
-  background-color: rgb(92, 184, 110, 0.9);
+
+  
 }
 
 .recipe-name h2 {
   white-space: wrap;
+  font-style: italic;
+  color: white;
 }
 
 .recipe-name img {
