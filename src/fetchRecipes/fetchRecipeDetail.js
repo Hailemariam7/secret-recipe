@@ -14,8 +14,11 @@ export async function fetchRecipeDetail(recipeId) {
   try {
     const response = await fetch(url, options);
     const recipeInDetail = await response.json();
-    console.log(recipeInDetail);
-    renderRecipeDetail(recipeInDetail);
+    if(response.ok){
+      document.querySelectorAll('.popup-content').forEach((element)=>{element.remove()})
+      renderRecipeDetail(recipeInDetail);
+    }
+    
   } catch (error) {
     alert(error);
   }
